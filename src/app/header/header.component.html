@@ -1,16 +1,17 @@
 <div class="bg-red-500">
   <div class="flex justify-content-between align-items-center">
     <i class="pi pi-bars ml-3 text-white" (click)="toggleSidebar()"></i>
-    <div class="flex gap-4 mt-4">
-      <a (click)="gotoAbout()" class="text">About us</a>
-      <a class="text">Contact us</a>
+    <div class="flex gap-3 m-4">
+      <a (click)="gotoAbout()" class="text-white cursor-pointer">About us</a>
+      <a (click)="goToContact()" class="text-white cursor-pointer">Contact us</a>
     </div>
-    <h1 class="text">Food Shopping</h1>
-
+    <h1 class="text-white  font-bold text-center flex-1">
+      Food Shopping App
+    </h1>
     <div class="flex align-items-center gap-2 mr-2">
-      <label class="text">Light</label>
+      <label class="text-white">Light</label>
       <p-inputSwitch class="mr-2 mt-2" (click)="toggle()" />
-      <label class="text">Dark</label>
+      <label class="text-white">Dark</label>
       <p-avatar
         class="custom-avatar"
         shape="circle"

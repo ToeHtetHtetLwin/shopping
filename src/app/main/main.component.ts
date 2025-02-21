@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ContentComponent } from '../content/content.component';
@@ -31,7 +31,6 @@ export class MainComponent {
   // Method to check the current route and decide whether to show data
   checkRoute(): void {
     this.currentRoute = this.router.url;
-
     // if (this.currentRoute !== 'main') {
     //   this.showData = false;
     // } else {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, contentChild, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
 import { AvatarModule } from 'primeng/avatar';
@@ -10,7 +10,16 @@ import { ContentComponent } from '../content/content.component';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [InputSwitchModule, CommonModule, FormsModule,AvatarModule,IconFieldModule,InputIconModule,RouterOutlet,ContentComponent],
+  imports: [
+    InputSwitchModule,
+    CommonModule,
+    FormsModule,
+    AvatarModule,
+    IconFieldModule,
+    InputIconModule,
+    RouterOutlet,
+    ContentComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
@@ -31,12 +40,21 @@ export class HeaderComponent {
     }
   }
 
-  @Output() sidebarToggle = new EventEmitter<void>(); // Create an EventEmitter
+  // Create an EventEmitter
+  @Output() sidebarToggle = new EventEmitter<void>();
 
+  // Send event when menu button is clicked
   toggleSidebar() {
-    this.sidebarToggle.emit(); // Send event when menu button is clicked
+    this.sidebarToggle.emit();
   }
-  gotoAbout(){
+
+  //Go To About Page when click on about
+  gotoAbout() {
     this.router.navigate(['main/about']);
+  }
+
+  //Go to contact page when click on contact
+  goToContact() {
+    this.router.navigate(['main/contact']);
   }
 }
