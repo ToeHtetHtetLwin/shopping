@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { IconFieldModule } from 'primeng/iconfield';
@@ -8,11 +10,13 @@ import { TagModule } from 'primeng/tag';
 @Component({
   selector: 'app-content',
   standalone: true,
-  imports: [ButtonModule, CarouselModule, TagModule,InputTextModule,IconFieldModule,InputIconModule],
+  imports: [ButtonModule, CarouselModule, TagModule,InputTextModule,IconFieldModule,InputIconModule,CommonModule,FormsModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css',
 })
 export class ContentComponent {
+  searchKeyword: string = '';
+  public value:string='';
   products = [
     {
       image: 'b1.jpeg',
@@ -57,4 +61,10 @@ export class ContentComponent {
       inventoryStatus: 'Out of Stock',
     },
   ];
+  
+  get filteredProducts() {
+    return this.products.filter(product => 
+      product.name.toLowerCase().includes(this.searchKeyword.toLowerCase())
+    );
+  }
 }
