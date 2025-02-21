@@ -1,0 +1,8 @@
+<app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
+<app-header (sidebarToggle)="toggleSidebar()"></app-header>
+<div *ngIf="showData" class="content-section">
+  <app-content></app-content>
+</div>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

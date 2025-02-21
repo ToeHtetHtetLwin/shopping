@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css"; /* Choose a theme */
+@import "primeng/resources/primeng.min.css"; /* PrimeNG core styles */
+@import "primeicons/primeicons.css"; /* PrimeIcons for icons */
+@import "primeflex/primeflex.css"; /* PrimeFlex for utilities (optional) */
+
+/* Default light mode styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+  /* background-image: url('assets/bread.jpg'); */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+/* Smooth transition for the sidebar */
+.p-sidebar {
+    transition: transform 0.3s ease-in-out; /* Adjust timing for smooth animation */
+  }
+  
+  .p-sidebar.ng-animating {
+    transition: none; /* Disable transition while the sidebar is animating */
+  }
+  
+  /* Adjust the transform property for sliding effect */
+  .p-sidebar.ng-trigger {
+    transform: translateX(0); /* Sidebar will slide in from the left */
+  }
+  
+  .p-sidebar.ng-trigger.ng-trigger-sidebar-leave {
+    transform: translateX(-100%); /* Sidebar will slide out to the left */
+  }
+  
+
