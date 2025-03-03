@@ -1,4 +1,4 @@
-<div class="flex align-items-center justify-content-center mt-5">
+<div class="flex align-items-center justify-content-center bg-red-500 min-h-screen">
   <p-card [style]="{ width: '360px', height: '300px' }">
     <div class="flex flex-column gap-3">
       <div class="flex align-items-center justify-content-center">
@@ -9,8 +9,8 @@
       </div>
       <div class="flex align-items-center justify-content-center">
         <p-floatLabel>
-          <input pInputText id="username" [(ngModel)]="value" />
-          <label for="username">Password</label>
+          <input pInputText id="password" [(ngModel)]="value" /> <!-- Changed id to "password" -->
+          <label for="password">Password</label>
         </p-floatLabel>
       </div>
       <div class="flex align-items-center justify-content-center">
