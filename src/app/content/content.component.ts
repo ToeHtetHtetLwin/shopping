@@ -8,7 +8,6 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { TagModule } from 'primeng/tag';
 import { ProductService } from '../product.service';
-import { HttpClient } from '@angular/common/http';
 import { Product } from '../product-model';
 @Component({
   selector: 'app-content',
@@ -29,10 +28,11 @@ import { Product } from '../product-model';
 })
 export class ContentComponent {
   searchKeyword: string = '';
+
   public productList = computed<Product[]>(() =>
     this._productService.productList()
   );
-
+  public cartItems: Product[] = [];
   constructor(private _productService: ProductService) {}
 
   ngOnInit(): void {
@@ -42,11 +42,14 @@ export class ContentComponent {
   fetchData() {
     this._productService.fetchProductList();
   }
-  
-  filteredProducts = computed(() =>
-    this.productList().filter((product) =>
+
+  get filteredProducts() {
+    return this.productList().filter((product) =>
       product.title.toLowerCase().includes(this.searchKeyword.toLowerCase())
-    )
-  );
-  
+    );
+  }
+
+  addToCart(product: Product) {
+    this._productService.addToCart(product);
+  }
 }
