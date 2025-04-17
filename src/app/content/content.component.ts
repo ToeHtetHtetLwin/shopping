@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TagModule } from 'primeng/tag';
 import { ProductService } from '../product.service';
 import { Product } from '../product-model';
+import { CardModule } from 'primeng/card';
 @Component({
   selector: 'app-content',
   standalone: true,
@@ -21,6 +22,7 @@ import { Product } from '../product-model';
     InputIconModule,
     CommonModule,
     FormsModule,
+    CardModule
   ],
 
   templateUrl: './content.component.html',
@@ -45,9 +47,27 @@ export class ContentComponent {
 
   get filteredProducts() {
     return this.productList().filter((product) =>
-      product.title.toLowerCase().includes(this.searchKeyword.toLowerCase())
+      product.category.toLowerCase().includes(this.searchKeyword.toLowerCase())
     );
   }
+
+  public responsiveOptions = [
+    {
+      breakpoint: '1199px',
+      numVisible: 1,
+      numScroll: 1,
+    },
+    {
+      breakpoint: '991px',
+      numVisible: 2,
+      numScroll: 1,
+    },
+    {
+      breakpoint: '767px',
+      numVisible: 1,
+      numScroll: 1,
+    },
+  ];
 
   addToCart(product: Product) {
     this._productService.addToCart(product);

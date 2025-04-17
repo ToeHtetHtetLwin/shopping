@@ -23,7 +23,18 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   constructor(private router: Router) {}
   public value: string = '';
+  public loading=false;
   logIn() {
+    this.loading = true;
+
+    // Simulate login delay
+    setTimeout(() => {
+      this.loading = false;
+      console.log('Logged in!');
+      // Navigate or do something after login
+    }, 2000);
     this.router.navigate(['/main']);
   }
+
+  
 }

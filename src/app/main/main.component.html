@@ -1,8 +1,6 @@
 <app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
 <app-header (sidebarToggle)="toggleSidebar()"></app-header>
-<div *ngIf="showData" class="content-section">
-  <app-content></app-content>
-</div>
-<div class="main-content">
+<div class="container"> <!-- pt-20 creates space for fixed header -->
   <router-outlet></router-outlet>
-</div>
+</div> <!-- ptc-20 creates space for fixed header -->
+ 

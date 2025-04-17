@@ -1,12 +1,24 @@
-p-carousel img {
-  width:50%;
-  height: 500px;
-  object-fit: cover;
-  border-radius: 5px;
-}
 .custom-width {
   width: 400px;
   height: 50px;
   border-radius: 30px;
   padding-left: 30px;
+}
+.product-img {
+  width: 100px;
+  height: 200px;
+}
+.search{
+  position: fixed;
+  text-align: center;
+}
+.container {
+ 
+  margin-top: 80px;
+}
+
+.main-scroll-container {
+  height: calc(100vh - 80px); /* header height offset */
+  overflow-y: auto;
+  padding: 1rem;
 }
