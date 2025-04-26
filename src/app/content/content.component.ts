@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
@@ -22,14 +22,14 @@ import { CardModule } from 'primeng/card';
     InputIconModule,
     CommonModule,
     FormsModule,
-    CardModule
+    CardModule,
   ],
 
   templateUrl: './content.component.html',
   styleUrl: './content.component.css',
 })
 export class ContentComponent {
-  searchKeyword: string = '';
+  public searchKeyword = signal<any>('');
 
   public productList = computed<Product[]>(() =>
     this._productService.productList()
@@ -45,12 +45,19 @@ export class ContentComponent {
     this._productService.fetchProductList();
   }
 
-  get filteredProducts() {
-    return this.productList().filter((product) =>
-      product.category.toLowerCase().includes(this.searchKeyword.toLowerCase())
-    );
-  }
-
+  // get filteredProducts() {
+  //   return this.productList().filter((product) =>
+  //     product.category.toLowerCase().includes(this.searchKeyword.toLowerCase())
+  //   );
+  // }
+  
+  public filteredProducts = computed(() =>
+    this.productList().filter((product) =>
+      product.category
+        .toLowerCase()
+        .includes(this.searchKeyword().toLowerCase())
+    )
+  );
   public responsiveOptions = [
     {
       breakpoint: '1199px',

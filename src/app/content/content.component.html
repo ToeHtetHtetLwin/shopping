@@ -1,61 +1,70 @@
 <div class="content-container pt-16"></div>
 <div class="container">
-<div class="flex justify-content-center align-items-center">
-  <p-iconField iconPosition="left" class="mt-2">
-    <p-inputIcon>
-      <i class="pi pi-search"></i>
-    </p-inputIcon>
-    <input
-      pInputText
-      type="text"
-      class="custom-width"
-      placeholder="Search keyword"
-      [(ngModel)]="searchKeyword"
-    />
-  </p-iconField>
-</div>
-<div class="flex mt-5">
-  <div class="card">
-    <p-carousel 
-    [value]="filteredProducts" 
-    [numVisible]="7" 
-    [numScroll]="7" 
-    [circular]="true" 
-    [responsiveOptions]="responsiveOptions" 
-    autoplayInterval="3000">
+  <div class="flex justify-content-center align-items-center">
+    <p-iconField iconPosition="left" class="mt-2">
+      <p-inputIcon>
+        <i class="pi pi-search"></i>
+      </p-inputIcon>
+      <input
+        pInputText
+        type="text"
+        class="custom-width"
+        placeholder="Search product"
+        [(ngModel)]="searchKeyword"
+      />
+    </p-iconField>
+  </div>
+  <div class="flex mt-5">
+    <div class="card">
+      <p-carousel
+        [value]="filteredProducts()"
+        [numVisible]="7"
+        [numScroll]="7"
+        [circular]="true"
+        [responsiveOptions]="responsiveOptions"
+        autoplayInterval="3000"
+      >
         <ng-template let-product pTemplate="item">
           <div class="border-none border-round w-5 h-5">
-
-                    <div class="mb-3">
-                        <div class="relative mx-auto">
-                            <img 
-                                src="{{ product.image }}" 
-                                [alt]="product.name" 
-                                class="product-img object-cover border-round" />
-                            <p-tag 
-                                [value]="product.inventoryStatus" 
-                              
-                                class="absolute" 
-                                [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
-                        </div>
-                    </div>
-                    <div class="mb-3 font-medium">
-                        {{ product.category }}
-                    </div>
-                    <div class="flex justify-content-between align-items-center">
-                    <div class="mt-0 font-semibold text-xl">
-                        {{ '$' + product.price }}
-                    </div>
-                        <span>
-                            <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-                            <p-button icon="pi pi-shopping-cart" (onClick)="addToCart(product)" styleClass="ml-2" />
-                        </span>
-                    </div>
-                </div>
+            <div class="mb-3">
+              <div class="relative mx-auto">
+                <img
+                  src="{{ product.image }}"
+                  [alt]="product.name"
+                  class="product-img object-cover border-round"
+                />
+                <p-tag
+                  [value]="product.inventoryStatus"
+                  class="absolute"
+                  [ngStyle]="{ 'left.px': 5, 'top.px': 5 }"
+                />
+              </div>
+            </div>
+            <div class="mb-3 font-medium">
+              {{ product.category }}
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <div class="mt-0 font-semibold text-xl">
+                {{ "$" + product.price }}
+              </div>
+              <span>
+                <p-button
+                  icon="pi pi-heart"
+                  severity="secondary"
+                  [outlined]="true"
+                />
+                <p-button
+                  icon="pi pi-shopping-cart"
+                  (onClick)="addToCart(product)"
+                  styleClass="ml-2"
+                />
+              </span>
+            </div>
+          </div>
         </ng-template>
-</p-carousel>
+      </p-carousel>
+    </div>
   </div>
-</div>
 </div>
 
 <div class="footer flex justify-between gap-4 p-4">
@@ -64,7 +73,9 @@
       <i class="pi pi-thumbs-up text-5xl text-teal-500 mb-3"></i>
       <h3>Qualities</h3>
       <p class="m-0 flex-grow">
-        Our shop uses the best products and good qualities. Knowing what customer needs and able to provide user's wishes. The best shopping page out of the 40 companies.
+        Our shop uses the best products and good qualities. Knowing what
+        customer needs and able to provide user's wishes. The best shopping page
+        out of the 40 companies.
       </p>
     </p-card>
   </div>
@@ -74,9 +85,9 @@
       <i class="pi pi-thumbs-up text-5xl text-teal-500 mb-3"></i>
       <h3>User Feedbacks</h3>
       <p class="m-0 flex-grow">
-        Best qualities products and fair price. Excellent customer service.
-        Best qualities products and fair price. Excellent customer service.
-        Best qualities products and fair price. Excellent customer service.
+        Best qualities products and fair price. Excellent customer service. Best
+        qualities products and fair price. Excellent customer service. Best
+        qualities products and fair price. Excellent customer service.
       </p>
     </p-card>
   </div>
@@ -86,11 +97,43 @@
       <i class="pi pi-thumbs-up text-5xl text-teal-500 mb-3"></i>
       <h3>Conversation</h3>
       <p class="m-0 flex-grow">
-        Send us messages. We will reply within 24 hours.
-        Best qualities products and fair price. Excellent customer service.
-        Best qualities products and fair price. Excellent customer service.
+        Send us messages. We will reply within 24 hours. Best qualities products
+        and fair price. Excellent customer service. Best qualities products and
+        fair price. Excellent customer service.
       </p>
     </p-card>
   </div>
 </div>
 
+<div class="video-section p-4">
+  <h2 class="text-2xl mb-4">Watch Our Product Highlights</h2>
+  <div class="flex gap-2 flex-wrap justify-content-start">
+    <iframe
+      width="400"
+      height="340"
+      src="https://www.youtube.com/embed/93z9DqfE_ek?autoplay=1&mute=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    >
+    </iframe>
+    <iframe
+      width="400"
+      height="340"
+      src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    >
+    </iframe>
+    <iframe
+      width="400"
+      height="340"
+      src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    >
+    </iframe>
+  </div>
+</div>
