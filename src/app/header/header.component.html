@@ -1,4 +1,4 @@
-<div class="header bg-blue-500 fixed top-0 w-full z-5">
+<div class="header bg-red-500 fixed top-0 w-full z-5">
   <div class="flex justify-content-between align-items-center">
     <i class="pi pi-bars ml-3 text-white" (click)="toggleSidebar()"></i>
     <div class="flex gap-3 m-4">
@@ -15,9 +15,11 @@
         [badge]="cartCount()"
         (click)="goToCart()"
       ></p-button>
-      <label class="text-white">Light</label>
-      <p-inputSwitch class="mr-2 mt-2" (click)="toggle()" />
-      <label class="text-white">Dark</label>
+      
+      <div>
+      <p-inputSwitch class="mr-2 mt-2"  [(ngModel)]="checked" (onChange)="handleChange($event)"/>
+      </div>
+    
       <p-avatar
         class="custom-avatar"
         shape="circle"

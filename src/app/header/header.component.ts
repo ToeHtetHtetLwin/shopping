@@ -32,25 +32,31 @@ export class HeaderComponent {
     private router: Router,
     private _productService: ProductService
   ) {}
-  public isDarkMode: boolean = false;
+  public checked: boolean = false;
 
-  ngOnInit() {}
+  ngOnInit() {
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode) {
+          this.checked = savedDarkMode === 'true';
+      if (this.checked) {
+        document.body.classList.add('dark-mode');
+      }
+    }
+  }
 
   cartCount() {
     return this._productService.getCartCount().toString();
   }
-            
-  /**
-   *Toggle dark mode on the body element
-   */
-  toggle() {
-    this.isDarkMode = !this.isDarkMode;
 
-    if (this.isDarkMode) {
+  handleChange(event: any) {
+    console.log('switch change>>>>>>>>>', event.checked);
+
+    if (event.checked) {
       document.body.classList.add('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
     }
+    localStorage.setItem('darkMode', event.checked.toString());
   }
 
   // Create an EventEmitter
