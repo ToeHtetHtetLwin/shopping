@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   constructor(private router: Router) {}
   public value: string = '';
-  public loading=false;
+  public loading = false;
   logIn() {
     this.loading = true;
 
@@ -35,6 +35,4 @@ export class LoginComponent {
     }, 2000);
     this.router.navigate(['/main']);
   }
-
-  
 }

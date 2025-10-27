@@ -2,8 +2,9 @@
   <div class="flex justify-content-between align-items-center">
     <i class="pi pi-bars ml-3 text-white" (click)="toggleSidebar()"></i>
     <div class="flex gap-3 m-4">
-      <a (click)="gotoAbout()" class="text-white cursor-pointer">About us</a>
-      <a (click)="goToContact()" class="text-white cursor-pointer">Contact us</a>
+      <a (click)="goToHome()" class="text-white cursor-pointer">Home</a>
+      <a (click)="goToAbout()" class="text-white cursor-pointer">About </a>
+      <a (click)="goToContact()" class="text-white cursor-pointer">Contact </a>
     </div>
     <h1 class="text-white  font-bold text-center flex-1">
       Shopping App
@@ -15,11 +16,9 @@
         [badge]="cartCount()"
         (click)="goToCart()"
       ></p-button>
-      
       <div>
       <p-inputSwitch class="mr-2 mt-2"  [(ngModel)]="checked" (onChange)="handleChange($event)"/>
       </div>
-    
       <p-avatar
         class="custom-avatar"
         shape="circle"

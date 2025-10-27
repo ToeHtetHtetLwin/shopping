@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
 import { AvatarModule } from 'primeng/avatar';
@@ -33,24 +39,22 @@ export class HeaderComponent {
     private _productService: ProductService
   ) {}
   public checked: boolean = false;
+  public cartCount = computed(() =>
+    this._productService.cartItems().length.toString()
+  );
 
   ngOnInit() {
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode) {
-          this.checked = savedDarkMode === 'true';
+      this.checked = savedDarkMode === 'true';
       if (this.checked) {
         document.body.classList.add('dark-mode');
       }
     }
   }
 
-  cartCount() {
-    return this._productService.getCartCount().toString();
-  }
-
   handleChange(event: any) {
     console.log('switch change>>>>>>>>>', event.checked);
-
     if (event.checked) {
       document.body.classList.add('dark-mode');
     } else {
@@ -68,8 +72,13 @@ export class HeaderComponent {
   }
 
   //Go To About Page when click on about
-  gotoAbout() {
+  goToAbout() {
     this.router.navigate(['main/about']);
+  }
+
+  //Go To Home Page when click on Home
+  goToHome() {
+    this.router.navigate(['/main']);
   }
 
   //Go to contact page when click on contact

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { Product } from './product-model';
 
 @Injectable({
@@ -7,9 +7,10 @@ import { Product } from './product-model';
 })
 export class ProductService {
   public productList = signal<Product[]>([]);
-  public cartItems: Product[] = [];
-
-  constructor(public _http: HttpClient) {}
+  public cartItems = signal<Product[]>([]);
+  constructor(public _http: HttpClient) {
+    effect(() => {});
+  }
 
   /**
    * Make Http Get Call for product List
@@ -30,18 +31,15 @@ export class ProductService {
   }
 
   addToCart(product: Product) {
-    this.cartItems.push(product);
-  }
-
-  getCartItems(): Product[] {
-    return this.cartItems;
+    this.cartItems.set([...this.cartItems(), product]);
   }
 
   removeFromCart(product: Product) {
-    this.cartItems = this.cartItems.filter((item) => item.id !== product.id); 
-  }
-
-  getCartCount(): number {
-    return this.cartItems.length;
+    const items = [...this.cartItems()];
+    const index = items.findIndex((item) => item.id == product.id);
+    if (index !== -1) {
+      items.splice(index, 1);
+      this.cartItems.set(items);
+    }
   }
 }

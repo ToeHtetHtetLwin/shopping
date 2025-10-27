@@ -45,12 +45,6 @@ export class ContentComponent {
     this._productService.fetchProductList();
   }
 
-  // get filteredProducts() {
-  //   return this.productList().filter((product) =>
-  //     product.category.toLowerCase().includes(this.searchKeyword.toLowerCase())
-  //   );
-  // }
-  
   public filteredProducts = computed(() =>
     this.productList().filter((product) =>
       product.category
@@ -58,23 +52,6 @@ export class ContentComponent {
         .includes(this.searchKeyword().toLowerCase())
     )
   );
-  public responsiveOptions = [
-    {
-      breakpoint: '1199px',
-      numVisible: 1,
-      numScroll: 1,
-    },
-    {
-      breakpoint: '991px',
-      numVisible: 2,
-      numScroll: 1,
-    },
-    {
-      breakpoint: '767px',
-      numVisible: 1,
-      numScroll: 1,
-    },
-  ];
 
   addToCart(product: Product) {
     this._productService.addToCart(product);

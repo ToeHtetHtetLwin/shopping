@@ -8,12 +8,11 @@
   width: 100px;
   height: 200px;
 }
-.search{
+.search {
   position: fixed;
   text-align: center;
 }
 .container {
- 
   margin-top: 80px;
 }
 

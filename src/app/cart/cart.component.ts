@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { Product } from '../product-model';
 import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -12,17 +13,24 @@ import { ProductService } from '../product.service';
   styleUrl: './cart.component.css',
 })
 export class CartComponent {
+  constructor(
+    private _productService: ProductService,
+    private _router: Router
+  ) {}
 
-  constructor(private _productService: ProductService) {}
+  public cartItems = computed(() => this._productService.cartItems());
 
-  public cartItems: Product[] = [];
-  
-  ngOnInit() {
-    this.cartItems = this._productService.getCartItems();
-  }
+  ngOnInit() {}
 
   removeItem(product: Product) {
     this._productService.removeFromCart(product);
-    this.cartItems = this._productService.getCartItems();
+  }
+
+  goToHome() {
+    this._router.navigate(['/main']);
+  }
+
+  goToShip() {
+    this._router.navigate(['main/shipping']);
   }
 }
