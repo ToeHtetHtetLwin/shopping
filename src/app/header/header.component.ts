@@ -38,6 +38,7 @@ export class HeaderComponent {
     private router: Router,
     private _productService: ProductService
   ) {}
+  
   public checked: boolean = false;
   public cartCount = computed(() =>
     this._productService.cartItems().length.toString()

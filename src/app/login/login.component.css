@@ -1,23 +1,23 @@
 @keyframes gradientMove {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
   }
-  
-  .bg-animated-gradient {
-    background: linear-gradient(-45deg, #b4c1d7, #06b6d4, #2d0a7f, #15bc1b);
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
+  50% {
+    background-position: 100% 50%;
   }
-  
-  .p-card{
-    height: 300px;
-    width:300px;
-    border:2px;
+  100% {
+    background-position: 0% 50%;
   }
+}
+
+.bg-animated-gradient {
+  background: linear-gradient(-45deg, #b4c1d7, #06b6d4, #2d0a7f, #15bc1b);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+.p-card {
+  height: 300px;
+  width: 300px;
+  border: 2px;
+}

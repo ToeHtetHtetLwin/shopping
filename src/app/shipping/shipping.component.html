@@ -10,6 +10,15 @@
         formControlName="firstname"
         class="w-full"
       />
+      <small
+        *ngIf="
+          shippingForm.get('firstname')?.invalid &&
+          shippingForm.get('firstname')?.touched
+        "
+        class="p-error"
+      >
+        Firstname is required.
+      </small>
     </div>
 
     <div class="field col-6 md:col-6">
@@ -21,6 +30,15 @@
         formControlName="lastname"
         class="w-full"
       />
+      <small
+        *ngIf="
+          shippingForm.get('lastname')?.invalid &&
+          shippingForm.get('lastname')?.touched
+        "
+        class="p-error"
+      >
+        Lastname is required.
+      </small>
     </div>
 
     <div class="field col-6">
@@ -32,6 +50,15 @@
         formControlName="address"
         class="w-full"
       ></textarea>
+      <small
+        *ngIf="
+          shippingForm.get('address')?.invalid &&
+          shippingForm.get('address')?.touched
+        "
+        class="p-error"
+      >
+        Address is required.
+      </small>
     </div>
 
     <div class="field col-6 md:col-6">
@@ -43,10 +70,24 @@
         formControlName="city"
         class="w-full"
       />
+      <small
+        *ngIf="
+          shippingForm.get('city')?.invalid && shippingForm.get('city')?.touched
+        "
+        class="p-error"
+      >
+        City is required.
+      </small>
     </div>
   </div>
-
-  <div class="mt-4 flex justify-content-end">
-    <p-button label="Continue" (click)="onSubmit()" />
-  </div>
+</div>
+<div class="ml-4">
+  <p-button
+    label="Continue Payment"
+    [outlined]="true"
+    severity="success"
+    (click)="goToPayment()"
+    [disabled]="shippingForm.invalid"
+  >
+  </p-button>
 </div>

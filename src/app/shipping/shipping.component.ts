@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -17,10 +23,26 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './shipping.component.html',
   styleUrl: './shipping.component.css',
 })
-export class ShippingComponent {
+export class ShippingComponent implements OnInit {
   public shippingForm!: FormGroup;
+  constructor(private _router: Router) {}
 
-  goToPayment() {}
+  ngOnInit() {
+    this.shippingForm = new FormGroup({
+      firstname: new FormControl('', Validators.required),
+      lastname: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+    });
+  }
 
-  onSubmit() {}
+  goToPayment() {
+    console.log('form>>>>>>>>>>>>>>>', this.shippingForm.value);
+    console.log(
+      'shipping form>>>>>>>>>',
+      this.shippingForm.get('firstname')?.value
+    );
+
+    this._router.navigate(['main/shopping-method']);
+  }
 }
