@@ -1,12 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 import { RadioButtonModule } from 'primeng/radiobutton';
 
 @Component({
   selector: 'app-shopping-method',
   standalone: true,
-  imports: [FormsModule, RadioButtonModule, CommonModule],
+  imports: [
+    FormsModule,
+    RadioButtonModule,
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonModule,
+  ],
   templateUrl: './shopping-method.component.html',
   styleUrl: './shopping-method.component.css',
 })
@@ -22,4 +29,6 @@ export class ShoppingMethodComponent {
   ngOnInit() {
     this.selectedCategory = this.categories[1];
   }
+  
+  goToReview() {}
 }
