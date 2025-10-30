@@ -9,10 +9,8 @@
   </p>
 
   <div class="flex justify-content-start mt-4">
-    <p-button
-      label="Confirm & Pay"
-      severity="success"
-      (click)="confirmOrder()"
-    />
-  </div>
+<p-toast />
+<p-confirmDialog />
+<p-button (onClick)="confirm1($event)" label="Confirm Order" [outlined]="true" />
+
 </div>
