@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-shipping',
@@ -25,6 +26,7 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class ShippingComponent implements OnInit {
   public shippingForm!: FormGroup;
+  #service = inject(ProductService);
   constructor(private _router: Router) {}
 
   ngOnInit() {
@@ -42,7 +44,7 @@ export class ShippingComponent implements OnInit {
       'shipping form>>>>>>>>>',
       this.shippingForm.get('firstname')?.value
     );
-
+    this.#service.formValue.set(this.shippingForm.value);
     this._router.navigate(['main/shopping-method']);
   }
 }

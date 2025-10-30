@@ -8,6 +8,7 @@ import { Product } from './product-model';
 export class ProductService {
   public productList = signal<Product[]>([]);
   public cartItems = signal<Product[]>([]);
+  public formValue = signal<any>('');
   constructor(public _http: HttpClient) {
     effect(() => {});
   }

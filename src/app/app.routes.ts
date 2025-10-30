@@ -7,6 +7,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ShoppingMethodComponent } from './shopping-method/shopping-method.component';
+import { ReviewOrderComponent } from './review-order/review-order.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -21,6 +22,7 @@ export const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'shipping', component: ShippingComponent },
       { path: 'shopping-method', component: ShoppingMethodComponent },
+      { path: 'review', component: ReviewOrderComponent },
     ],
   },
 ];
