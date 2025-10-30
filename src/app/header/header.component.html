@@ -1,6 +1,6 @@
 <div class="header bg-red-500 fixed top-0 w-full z-5">
   <div class="flex justify-content-between align-items-center">
-    <i class="pi pi-bars ml-3 text-white" (click)="toggleSidebar()"></i>
+    <!-- <i class="pi pi-bars ml-3 text-white" (click)="toggleSidebar()"></i> -->
     <div class="flex gap-3 m-4">
       <a (click)="goToHome()" class="text-white cursor-pointer">Home</a>
       <a (click)="goToAbout()" class="text-white cursor-pointer">About </a>
@@ -19,10 +19,12 @@
       <div>
       <p-inputSwitch class="mr-2 mt-2"  [(ngModel)]="checked" (onChange)="handleChange($event)"/>
       </div>
+       <p-menu #menu [model]="items" [popup]="true" />
       <p-avatar
         class="custom-avatar"
         shape="circle"
         icon="pi pi-user"
+        (click)="menu.toggle($event)"
       ></p-avatar>
     </div>
   </div>

@@ -1,10 +1,9 @@
 <div class="header" [formGroup]="shippingForm">
   <h3>Shipping</h3>
-  <div class="formgrid grid">
+  <div class="formgrid grid w-1/2">
     <div class="field col-6 md:col-6">
       <label for="firstname6">Firstname</label>
       <input
-        id="firstname6"
         type="text"
         pInputText
         formControlName="firstname"
@@ -24,7 +23,6 @@
     <div class="field col-6 md:col-6">
       <label for="lastname6">Lastname</label>
       <input
-        id="lastname6"
         type="text"
         pInputText
         formControlName="lastname"
@@ -44,7 +42,6 @@
     <div class="field col-6">
       <label for="address">Address</label>
       <textarea
-        id="address"
         pInputTextarea
         rows="4"
         formControlName="address"
@@ -63,16 +60,18 @@
 
     <div class="field col-6 md:col-6">
       <label for="city">City</label>
-      <input
-        id="city"
-        type="text"
-        pInputText
-        formControlName="city"
-        class="w-full"
+      <p-dropdown
+        formControlName="selectedCity"
+        [options]="cities"
+        optionLabel="name"
+        placeholder="Select a City"
+        [styleClass]="'w-full'"
       />
+
       <small
         *ngIf="
-          shippingForm.get('city')?.invalid && shippingForm.get('city')?.touched
+          shippingForm.get('selectedCity')?.invalid &&
+          shippingForm.get('selectedCity')?.touched
         "
         class="p-error"
       >

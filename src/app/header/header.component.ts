@@ -15,6 +15,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { ContentComponent } from '../content/content.component';
 import { ProductService } from '../product.service';
 import { ButtonModule } from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
 
 @Component({
   selector: 'app-header',
@@ -29,6 +30,7 @@ import { ButtonModule } from 'primeng/button';
     RouterOutlet,
     ContentComponent,
     ButtonModule,
+    MenuModule,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
@@ -38,11 +40,18 @@ export class HeaderComponent {
     private router: Router,
     private _productService: ProductService
   ) {}
-  
+
   public checked: boolean = false;
   public cartCount = computed(() =>
     this._productService.cartItems().length.toString()
   );
+  public items = [
+    {
+      label: 'Logout',
+      icon: 'pi pi-sign-out',
+      command: () => this.logOut(),
+    },
+  ];
 
   ngOnInit() {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -52,6 +61,10 @@ export class HeaderComponent {
         document.body.classList.add('dark-mode');
       }
     }
+  }
+  
+  logOut() {
+    this.router.navigate(['login']);
   }
 
   handleChange(event: any) {
