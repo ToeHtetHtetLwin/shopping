@@ -56,7 +56,7 @@ export class HeaderComponent {
   ngOnInit() {
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode) {
-      this.checked = savedDarkMode === 'true';
+      this.checked = savedDarkMode == 'true';
       if (this.checked) {
         document.body.classList.add('dark-mode');
       }
