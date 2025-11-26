@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { effect, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import { Product } from './product-model';
 
 @Injectable({
@@ -7,10 +7,14 @@ import { Product } from './product-model';
 })
 export class ProductService {
   public productList = signal<Product[]>([]);
-  public cartItems = signal<Product[]>([]);
+
   public formValue = signal<any>('');
+
+  public cartItems = signal<any>([]);
   constructor(public _http: HttpClient) {
-    effect(() => {});
+    effect(() => {
+    
+    });
   }
 
   /**
@@ -31,13 +35,26 @@ export class ProductService {
     });
   }
 
-  addToCart(product: Product) {
-    this.cartItems.set([...this.cartItems(), product]);
+ addToCart(product: Product, qty: number) {
+    const items = this.cartItems();
+    const existing = items.find((i: any) => i.product.id == product.id);
+    if (existing) {
+      existing.qty += qty;
+      existing.subtotal = existing.qty * existing.product.price;
+    } else {
+      items.push({
+        product,
+        qty,
+        subtotal: product.price * qty
+      });
+    }
+
+    this.cartItems.set([...items]);
   }
 
   removeFromCart(product: Product) {
     const items = [...this.cartItems()];
-    const index = items.findIndex((item) => item.id == product.id);
+    const index = items.findIndex((item) => item.product.id == product.id);
     if (index !== -1) {
       items.splice(index, 1);
       this.cartItems.set(items);

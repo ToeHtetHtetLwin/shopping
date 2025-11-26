@@ -15,6 +15,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-content',
   standalone: true,
@@ -47,13 +48,18 @@ export class ContentComponent {
   public qty = signal<number>(1);
   public cartItems: Product[] = [];
   public quantity: number = 1;
-  public totalPrice: number = 0;
   private selectedProduct = signal<any>('');
+  public totalPrice = signal<number>(1);
   constructor(
     private _productService: ProductService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private _router: Router
+  ) {
+    effect(()=>{
+      console.log('qty>>>>>>>>',this.qty())
+    })
+  }
 
   ngOnInit(): void {
     this.fetchData();
@@ -71,57 +77,53 @@ export class ContentComponent {
     )
   );
 
-  addToCart(product: Product) {
-    this._productService.addToCart(product);
-  }
+  // addToCart(product: Product) {
+  //  
+  // }
 
   /**
    * Confirm dialog when click on add to cart button
    */
-  confirm(product: any) {
-    console.log('Confrim>>>>>>>>>>>', this.confirm);
-    this.selectedProduct.set(product);
-    this.confirmationService.confirm({
-      header: 'Item Added To Your Cart',
-      message: product.price,
+  confirm(product: Product) {
+  this.selectedProduct.set(product);
 
-      acceptIcon: 'pi pi-check mr-2',
-      rejectIcon: 'pi pi-times mr-2',
-      rejectButtonStyleClass: 'p-button-sm',
-      acceptButtonStyleClass: 'p-button-outlined p-button-sm',
-      accept: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Confirmed',
-          detail: 'Add  To Cart Successfully',
-          life: 3000,
-        });
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Rejected',
-          detail: 'Cancel Order',
-          life: 3000,
-        });
-      },
-    });
-  }
+
+  this.confirmationService.confirm({
+    message: `Price: ${product.price}`,
+    accept: () => {
+      this._productService.addToCart(this.selectedProduct(),this.qty());
+      this.messageService.add({
+        severity: 'info',
+        summary: 'Confirmed',
+        detail: 'Added To Cart Successfully',
+        life: 3000,
+      });
+    },
+    reject: () => {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Cancelled',
+        detail: 'Order Cancelled',
+        life: 3000,
+      });
+    },
+  });
+}
 
   /**
    * Effect tracking Qty to calculate total price
    */
-  priceEff = effect(() => {
-    if (this.qty() && this.selectedProduct()) {
-      this.totalPrice = Math.round(this.qty() * this.selectedProduct().price);
-    }
-  });
+  priceEff = effect(
+    () => {
+      if (this.qty() && this.selectedProduct()) {
+        const price = Math.round(this.qty() * this.selectedProduct().price);
+        this.totalPrice.set(price);
+      }
+    },
+    { allowSignalWrites: true }
+  );
 
-  /**
-   * 
-   * @param event Trigger when qty change
-   */
-  onQtyChange(event: any) {
-    this.qty.set(event.value);
+  goToCheckOut() {
+    this._router.navigate(['main/cart']);
   }
 }

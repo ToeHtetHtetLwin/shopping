@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, effect } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { Product } from '../product-model';
 import { ProductService } from '../product.service';
@@ -16,10 +16,14 @@ export class CartComponent {
   constructor(
     private _productService: ProductService,
     private _router: Router
-  ) {}
+  ) {
+    effect(() => {
+      console.log('cart>>>>>>>>>>>>', this.cartItems());
+    });
+  }
 
   public cartItems = computed(() => this._productService.cartItems());
-
+  
   ngOnInit() {}
 
   removeItem(product: Product) {

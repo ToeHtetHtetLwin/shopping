@@ -22,11 +22,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class ReviewOrderComponent {
   #service = inject(ProductService);
   public cartItems = computed(() => this.#service.cartItems());
-  public totalPrice = computed(() => {
-    let total = 0;
-    this.cartItems().forEach((item) => (total += item.price));
-    return total;
-  });
+  // public totalPrice = computed(() => {
+  //   let total = 0;
+  //   this.cartItems().forEach((item) => (total += item.product.price));
+  //   return total;
+  // });
   public shippingForm = computed(() => this.#service.formValue());
   constructor(
     private confirmationService: ConfirmationService,

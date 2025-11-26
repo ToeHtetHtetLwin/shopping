@@ -23,7 +23,7 @@
         [numVisible]="7"
         [numScroll]="7"
         [circular]="true"
-        autoplayInterval="3000"
+        autoplayInterval="60000"
       >
         <ng-template let-product pTemplate="item">
           <div class="border-none border-round w-5 h-5">
@@ -70,45 +70,29 @@
     </div>
   </div>
 </div>
-<p-confirmDialog>
-  <ng-template pTemplate="header">
-    <div class="flex align-items-center gap-2">
-      <i class="pi pi-check-circle text-green-500 text-2xl"></i>
-      <span class="font-semibold text-lg">Item will be add to your cart</span>
-    </div>
-  </ng-template>
-
+<p-confirmDialog 
+  header="Item Added To Your Cart"
+  icon="pi pi-check-circle"
+  [acceptLabel]="'Add to Cart'"
+  [rejectLabel]="'Cancel'"
+  [acceptButtonStyleClass]="'p-button-outlined p-button-sm'"
+  [rejectButtonStyleClass]="'p-button-sm'">
+  
   <ng-template pTemplate="message" let-message>
     <div class="flex gap-3 pt-2">
-      <p class="m-0 text-sm text-gray-500">Price:${{ message.message }}</p>
+      <p class="m-0 text-sm text-gray-500">Price: ${{ message.message }}</p>
 
       <p-inputNumber
-        [(ngModel)]="quantity"
+        [ngModel]="qty()"
+        (ngModelChange)="qty.set($event)"
         mode="decimal"
-        (onInput)="onQtyChange($event)"
         [showButtons]="true"
         inputId="minmax-buttons"
-        [min]="0"
+        [min]="1"
         [max]="100"
       />
-      <span>Total Price : ${{ totalPrice }}</span>
-    </div>
-  </ng-template>
-
-  <ng-template pTemplate="footer" let-callback="callback">
-    <div class="flex justify-content-end gap-2 mt-3">
-      <p-button
-        label="Keep Browsing"
-        severity="secondary"
-        styleClass="p-button-sm"
-        (click)="callback.reject()"
-      ></p-button>
-      <p-button
-        label="Go to Checkout"
-        icon="pi pi-shopping-cart"
-        styleClass="p-button-sm"
-        (click)="callback.accept()"
-      ></p-button>
+      
+      <span>Total Price: ${{ totalPrice() }}</span>
     </div>
   </ng-template>
 </p-confirmDialog>
@@ -184,7 +168,7 @@
 </div>
 
 <p-divider></p-divider>
-
+<div class="bg-black-alpha-80">
 <div class="flex-column text-center">
   <h2 class="">Who We Are</h2>
   <p>
@@ -197,4 +181,5 @@
   <i class="pi pi-phone" style="font-size: 1.5rem"></i>
   <i class="pi pi-telegram" style="font-size: 1.5rem"></i>
   <i class="pi pi-facebook" style="font-size: 1.5rem"></i>
+</div>
 </div>

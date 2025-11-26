@@ -39,11 +39,15 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private _productService: ProductService
-  ) {}
+  ) {
+    effect(()=>{
+  console.log('count>>>>>>>>>>>>>>>>>',this.cartCount())
+    })
+  }
 
   public checked: boolean = false;
   public cartCount = computed(() =>
-    this._productService.cartItems().length.toString()
+    this._productService.cartItems().length
   );
   public items = [
     {
