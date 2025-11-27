@@ -1,75 +1,50 @@
-<div class="content-container pt-16"></div>
+<div class="container mx-auto">
 
-<div class="container">
-  <div class="flex justify-content-center align-items-center">
-    <p-iconField iconPosition="left" class="mt-2">
-      <p-inputIcon>
-        <i class="pi pi-search"></i>
-      </p-inputIcon>
+  <!-- Search -->
+  <div class="flex justify-content-center mb-5">
+    <p-iconField iconPosition="left">
+      <p-inputIcon><i class="pi pi-search"></i></p-inputIcon>
       <input
         pInputText
         type="text"
-        class="custom-width"
+        class="w-full md:w-96 h-12 px-8 rounded-full"
         placeholder="Search product"
         [(ngModel)]="searchKeyword"
       />
     </p-iconField>
   </div>
 
-  <div class="flex mt-5">
-    <div class="card">
-      <p-carousel
-        [value]="filteredProducts()"
-        [numVisible]="7"
-        [numScroll]="7"
-        [circular]="true"
-        autoplayInterval="60000"
-      >
-        <ng-template let-product pTemplate="item">
-          <div class="border-none border-round w-5 h-5">
-            <div class="mb-3">
-              <div class="relative mx-auto">
-                <img
-                  src="{{ product.image }}"
-                  [alt]="product.name"
-                  class="product-img object-cover border-round"
-                />
-                <p-tag
-                  [value]="product.inventoryStatus"
-                  class="absolute"
-                  [ngStyle]="{ 'left.px': 5, 'top.px': 5 }"
-                />
-              </div>
-            </div>
+  <!-- Product Carousel -->
+  <p-carousel
+    [value]="filteredProducts()"
+    [numVisible]="7"
+    [numScroll]="7"
+    [circular]="true"
+    autoplayInterval="60000"
+    class="mb-8"
+  >
+   <ng-template let-product pTemplate="item">
+  <div class="border-round p-2 flex flex-column align-items-center">
 
-            <div class="mb-3 font-medium">{{ product.category }}</div>
+    <img
+      [src]="product.image"
+      [alt]="product.name"
+      class="object-cover border-round mb-2"
+      style="width:150px; height:150px;"
+    />
 
-            <div class="flex justify-content-between align-items-center">
-              <div class="mt-0 font-semibold text-xl">
-                {{ "$" + product.price }}
-              </div>
-
-              <span>
-                <p-button
-                  icon="pi pi-heart"
-                  severity="secondary"
-                  [outlined]="true"
-                ></p-button>
-
-                <!-- ✅ Fixed (click) event -->
-                <p-button
-                  icon="pi pi-shopping-cart"
-                  (click)="confirm(product)"
-                  styleClass="ml-2"
-                ></p-button>
-              </span>
-            </div>
-          </div>
-        </ng-template>
-      </p-carousel>
+    <div class="font-medium mb-1">{{ product.category }}</div>
+    <div class="flex justify-content-between align-items-center w-full">
+      <div class="font-semibold text-lg">{{ "$" + product.price }}</div>
+      <div class="flex gap-2">
+        <p-button icon="pi pi-heart" severity="secondary" [outlined]="true"></p-button>
+        <p-button icon="pi pi-shopping-cart" (click)="confirm(product)"></p-button>
+      </div>
     </div>
   </div>
-</div>
+</ng-template>
+
+  </p-carousel>
 <p-confirmDialog 
   header="Item Added To Your Cart"
   icon="pi pi-check-circle"
@@ -97,8 +72,9 @@
   </ng-template>
 </p-confirmDialog>
 
-<!-- Footer Section -->
-<div class="footer flex justify-between gap-4 p-4">
+
+  <!-- Footer Cards -->
+  <div class="footer flex justify-between gap-4 p-4">
   <div class="footer-card flex-1 flex">
     <p-card class="h-full flex flex-col">
       <i class="pi pi-cart-plus text-5xl text-teal-500 mb-3"></i>
@@ -134,52 +110,12 @@
   </div>
 </div>
 
-<!-- Video Section -->
-<div class="video-section p-4">
-  <h2 class="text-2xl mb-4">Watch Our Product Highlights</h2>
-  <div class="flex gap-2 flex-wrap justify-content-start">
-    <iframe
-      width="400"
-      height="340"
-      src="https://www.youtube.com/embed/93z9DqfE_ek?autoplay=1&mute=1"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
 
-    <iframe
-      width="400"
-      height="340"
-      src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
-
-    <iframe
-      width="400"
-      height="340"
-      src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
+  <!-- Video Section -->
+  <div class="flex flex-wrap gap-4 justify-content-center">
+    <iframe width="400" height="340" src="https://www.youtube.com/embed/93z9DqfE_ek?autoplay=1&mute=1"></iframe>
+    <iframe width="400" height="340" src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"></iframe>
+    <iframe width="400" height="340" src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"></iframe>
   </div>
-</div>
 
-<p-divider></p-divider>
-<div class="bg-black-alpha-80">
-<div class="flex-column text-center">
-  <h2 class="">Who We Are</h2>
-  <p>
-    We are serving the best products in one place for our customers who are
-    living around the world.
-  </p>
-</div>
-
-<div class="flex justify-content-center gap-4 mb-2">
-  <i class="pi pi-phone" style="font-size: 1.5rem"></i>
-  <i class="pi pi-telegram" style="font-size: 1.5rem"></i>
-  <i class="pi pi-facebook" style="font-size: 1.5rem"></i>
-</div>
 </div>
