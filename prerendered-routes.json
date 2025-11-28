@@ -1,0 +1,12 @@
+{
+  "routes": [
+    "/login",
+    "/main",
+    "/main/about",
+    "/main/cart",
+    "/main/contact",
+    "/main/review",
+    "/main/shipping",
+    "/main/shopping-method"
+  ]
+}
