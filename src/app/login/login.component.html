@@ -1,0 +1,28 @@
+<div class="flex align-items-center justify-content-center bg-animated-gradient min-h-screen">
+  <div class="p-card">
+ 
+    <div class="flex flex-column mt-5 gap-3">
+      <div class="flex align-items-center justify-content-center">
+        <p-floatLabel>
+          <input pInputText id="username" [(ngModel)]="value" />
+          <label for="username">Username</label>
+        </p-floatLabel>
+      </div>
+      <div class="flex align-items-center justify-content-center">
+        <p-floatLabel>
+          <input pInputText id="password" [(ngModel)]="value" />
+          <label for="password">Password</label>
+        </p-floatLabel>
+      </div>
+      <div class="flex align-items-center justify-content-center">
+        <p-button 
+        label="Log In" 
+        icon="pi pi-sign-in" 
+        (click)="logIn()" 
+      ></p-button>
+      
+      </div>
+    </div>
+
+</div>
+</div>

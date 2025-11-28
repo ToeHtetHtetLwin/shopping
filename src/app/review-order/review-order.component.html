@@ -1,0 +1,16 @@
+<p>review-order works!</p>
+<div class="card ml-4 mt-4 p-4 w-full max-w-md">
+  <h3>Review Your Order</h3>
+  <p>Total Items: {{ cartItems().length }}</p>
+  <!-- <p>Total Price:{{ totalPrice() }}</p> -->
+  <p>
+    Shipping To: {{ shippingForm().firstname }} {{ shippingForm().lastname }},
+    {{ shippingForm().address }}, {{ shippingForm().city }}
+  </p>
+
+  <div class="flex justify-content-start mt-4">
+<p-toast />
+<p-confirmDialog />
+<p-button (onClick)="confirm1($event)" label="Confirm Order" [outlined]="true" />
+
+</div>
