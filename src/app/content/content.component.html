@@ -1,13 +1,12 @@
 <div class="container mx-auto">
-
   <!-- Search -->
   <div class="flex justify-content-center mb-5">
-    <p-iconField iconPosition="left">
+    <p-iconField iconPosition="left" class="w-full md:w-6 lg:w-4">
       <p-inputIcon><i class="pi pi-search"></i></p-inputIcon>
       <input
         pInputText
         type="text"
-        class="w-full md:w-96 h-12 px-8 rounded-full"
+        class="w-full h-3rem px-4 border-round-3xl placeholder-small ml-2"
         placeholder="Search product"
         [(ngModel)]="searchKeyword"
       />
@@ -22,100 +21,126 @@
     [circular]="true"
     autoplayInterval="60000"
     class="mb-8"
+    [responsiveOptions]="[
+      { breakpoint: '1199px', numVisible: 5, numScroll: 5 },
+      { breakpoint: '991px', numVisible: 3, numScroll: 3 },
+      { breakpoint: '575px', numVisible: 3, numScroll: 3 }
+    ]"
   >
-   <ng-template let-product pTemplate="item">
-  <div class="border-round p-2 flex flex-column align-items-center">
+    <ng-template let-product pTemplate="item">
+      <div
+        class="border-round p-3 flex flex-column align-items-center bg-dark-50 w-full"
+      >
+        <img
+          [src]="product.image"
+          [alt]="product.name"
+          class="object-cover border-round mb-2"
+          style="width: 120px; height: 120px"
+        />
 
-    <img
-      [src]="product.image"
-      [alt]="product.name"
-      class="object-cover border-round mb-2"
-      style="width:150px; height:150px;"
-    />
+        <div class="font-medium mb-1">{{ product.category }}</div>
 
-    <div class="font-medium mb-1">{{ product.category }}</div>
-    <div class="flex justify-content-between align-items-center w-full">
-      <div class="font-semibold text-lg">{{ "$" + product.price }}</div>
-      <div class="flex gap-2">
-        <p-button icon="pi pi-heart" severity="secondary" [outlined]="true"></p-button>
-        <p-button icon="pi pi-shopping-cart" (click)="confirm(product)"></p-button>
+        <div class="flex justify-content-between align-items-center w-full">
+          <div class="font-semibold text-lg">{{ "$" + product.price }}</div>
+          <div class="flex gap-2">
+            <p-button
+              icon="pi pi-heart"
+              severity="secondary"
+              [outlined]="true"
+            ></p-button>
+            <p-button
+              icon="pi pi-shopping-cart"
+              (click)="confirm(product)"
+            ></p-button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</ng-template>
-
+    </ng-template>
   </p-carousel>
-<p-confirmDialog 
-  header="Item Added To Your Cart"
-  icon="pi pi-check-circle"
-  [acceptLabel]="'Add to Cart'"
-  [rejectLabel]="'Cancel'"
-  [acceptButtonStyleClass]="'p-button-outlined p-button-sm'"
-  [rejectButtonStyleClass]="'p-button-sm'">
-  
-  <ng-template pTemplate="message" let-message>
-    <div class="flex gap-3 pt-2">
-      <p class="m-0 text-sm text-gray-500">Price: ${{ message.message }}</p>
 
-      <p-inputNumber
-        [ngModel]="qty()"
-        (ngModelChange)="qty.set($event)"
-        mode="decimal"
-        [showButtons]="true"
-        inputId="minmax-buttons"
-        [min]="1"
-        [max]="100"
-      />
-      
-      <span>Total Price: ${{ totalPrice() }}</span>
-    </div>
-  </ng-template>
-</p-confirmDialog>
+  <!-- Confirm Dialog -->
+  <p-confirmDialog
+    header="Item Added To Your Cart"
+    icon="pi pi-check-circle"
+    [acceptLabel]="'Add to Cart'"
+    [rejectLabel]="'Cancel'"
+    [acceptButtonStyleClass]="'p-button-outlined p-button-sm'"
+    [rejectButtonStyleClass]="'p-button-sm'"
+  >
+    <ng-template pTemplate="message" let-message>
+      <div class="flex flex-column sm:flex-row gap-3 pt-2">
+        <p class="m-0 text-sm text-gray-500">Price: ${{ message.message }}</p>
 
+        <p-inputNumber
+          [ngModel]="qty()"
+          (ngModelChange)="qty.set($event)"
+          mode="decimal"
+          [showButtons]="true"
+          [min]="1"
+          [max]="100"
+        ></p-inputNumber>
+
+        <span class="font-semibold">Total: ${{ totalPrice() }}</span>
+      </div>
+    </ng-template>
+  </p-confirmDialog>
 
   <!-- Footer Cards -->
-  <div class="footer flex justify-between gap-4 p-4">
-  <div class="footer-card flex-1 flex">
-    <p-card class="h-full flex flex-col">
-      <i class="pi pi-cart-plus text-5xl text-teal-500 mb-3"></i>
-      <h3>Qualities</h3>
-      <p class="m-0 flex-grow">
-        Our shop uses the best products and good qualities. Knowing what
-        customer needs and able to provide user's wishes. The best shopping page
-        out of the 40 companies.
-      </p>
-    </p-card>
+  <div class="footer grid grid-nogutter gap-4 mt-5">
+    <div class="col-12 md:col-4">
+      <p-card class="h-full text-center p-4">
+        <i class="pi pi-cart-plus text-5xl text-teal-500 mb-3"></i>
+        <h3>Qualities</h3>
+        <p>
+          We use high-quality products that satisfy customers. Best shop among
+          40 competitors.
+        </p>
+      </p-card>
+    </div>
+
+    <div class="col-12 md:col-4">
+      <p-card class="h-full text-center p-4">
+        <i class="pi pi-thumbs-up text-5xl text-teal-500 mb-3"></i>
+        <h3>User Feedbacks</h3>
+        <p>
+          Excellent customer service and fair prices. High-quality products
+          guaranteed.
+        </p>
+      </p-card>
+    </div>
+
+    <div class="col-12 md:col-4">
+      <p-card class="h-full text-center p-4">
+        <i class="pi pi-envelope text-5xl text-teal-500 mb-3"></i>
+        <h3>Conversation</h3>
+        <p>
+          Message us anytime. We reply within 24 hours with the best support.
+        </p>
+      </p-card>
+    </div>
   </div>
 
-  <div class="footer-card flex-1 flex">
-    <p-card class="h-full flex flex-col">
-      <i class="pi pi-thumbs-up text-5xl text-teal-500 mb-3"></i>
-      <h3>User Feedbacks</h3>
-      <p class="m-0 flex-grow">
-        Best qualities products and fair price. Excellent customer service. Best
-        qualities products and fair price. Excellent customer service.
-      </p>
-    </p-card>
+  <!-- Responsive Videos -->
+  <div class="flex flex-wrap justify-content-center gap-3 mt-4">
+    <div class="w-full sm:w-6 md:w-4">
+      <iframe
+        class="w-full h-15rem border-round"
+        src="https://www.youtube.com/embed/93z9DqfE_ek?autoplay=1&mute=1"
+      ></iframe>
+    </div>
+
+    <div class="w-full sm:w-6 md:w-4">
+      <iframe
+        class="w-full h-15rem border-round"
+        src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"
+      ></iframe>
+    </div>
+
+    <div class="w-full sm:w-6 md:w-4">
+      <iframe
+        class="w-full h-15rem border-round"
+        src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"
+      ></iframe>
+    </div>
   </div>
-
-  <div class="footer-card flex-1 flex">
-    <p-card class="h-full flex flex-col">
-      <i class="pi pi-envelope text-5xl text-teal-500 mb-3"></i>
-      <h3>Conversation</h3>
-      <p class="m-0 flex-grow">
-        Send us messages. We will reply within 24 hours. Best qualities products
-        and fair price. Excellent customer service.
-      </p>
-    </p-card>
-  </div>
-</div>
-
-
-  <!-- Video Section -->
-  <div class="flex flex-wrap gap-4 justify-content-center">
-    <iframe width="400" height="340" src="https://www.youtube.com/embed/93z9DqfE_ek?autoplay=1&mute=1"></iframe>
-    <iframe width="400" height="340" src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"></iframe>
-    <iframe width="400" height="340" src="https://www.youtube.com/embed/7m16dFI1AF8?autoplay=1&mute=1"></iframe>
-  </div>
-
 </div>

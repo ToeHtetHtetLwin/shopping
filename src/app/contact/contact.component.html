@@ -1,31 +1,33 @@
-<div class="flex justify-content-center mt-16">
-  <p-card class="w-30rem">
-
+<div class="flex justify-content-center">
+  <p-card class="mt-7 p-3">
     <h2 class="text-center mb-4">Contact Us</h2>
 
     <div class="grid">
-
-      <div class="col-6 text-right font-semibold">
+      <!-- Phone -->
+      <div class="col-12 md:col-6 text-center md:text-right font-semibold">
         Phone:
       </div>
-      <div class="col-6 flex align-items-center gap-2">
+      <div
+        class="col-12 md:col-6 flex justify-content-center md:justify-content-start align-items-center gap-2"
+      >
         <i class="pi pi-phone text-green-600"></i>
         <span>093333333333</span>
       </div>
 
-      <div class="col-6 text-right font-semibold mt-3">
+      <!-- Email -->
+      <div class="col-12 md:col-6 text-center md:text-right font-semibold mt-3">
         Email:
       </div>
-      <div class="col-6 flex align-items-center gap-2 mt-3">
+      <div
+        class="col-12 md:col-6 flex justify-content-center md:justify-content-start align-items-center gap-2 mt-3"
+      >
         <i class="pi pi-envelope text-blue-600"></i>
         <span>Shopgmail.com</span>
       </div>
-
     </div>
-
   </p-card>
 </div>
 
-<div class="flex justify-content-center mt-4">
+<div class="flex justify-content-center mt-4 mb-5">
   <p-button label="Go Back" severity="success" (click)="goToHeader()" />
 </div>

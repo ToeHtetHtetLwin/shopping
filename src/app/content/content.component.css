@@ -4,14 +4,17 @@
   border-radius: 30px;
   padding-left: 30px;
 }
-.image{
+
+.image {
   width: 100px;
   height: 200px;
 }
+
 .search {
   position: fixed;
   text-align: center;
 }
+
 .container {
   margin-top: 80px;
 }
@@ -22,3 +25,24 @@
   padding: 1rem;
 }
 
+::ng-deep .p-confirm-dialog {
+  width: 500px !important;
+}
+
+/* PHONE view */
+@media screen and (max-width: 576px) {
+  ::ng-deep .p-confirm-dialog {
+    width: 300px !important; /* smaller dialog */
+    max-width: 90vw !important;
+  }
+
+  ::ng-deep .p-confirm-dialog .p-dialog-content {
+    padding: 0.8rem !important;
+  }
+}
+
+/* Use PrimeFlex naming convention if you want */
+.placeholder-small::placeholder {
+  font-size: 0.75rem; /* matches text-xs */
+  color: #666; /* optional, lighter placeholder */
+}

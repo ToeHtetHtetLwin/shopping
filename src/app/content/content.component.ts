@@ -57,7 +57,6 @@ export class ContentComponent {
     private _router: Router
   ) {
     effect(()=>{
-      console.log('qty>>>>>>>>',this.qty())
     })
   }
 
@@ -77,17 +76,11 @@ export class ContentComponent {
     )
   );
 
-  // addToCart(product: Product) {
-  //  
-  // }
-
   /**
    * Confirm dialog when click on add to cart button
    */
   confirm(product: Product) {
   this.selectedProduct.set(product);
-
-
   this.confirmationService.confirm({
     message: `Price: ${product.price}`,
     accept: () => {

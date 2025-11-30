@@ -23,12 +23,9 @@ export class CartComponent {
   }
 
   public cartItems = computed(() => this._productService.cartItems());
-  
+
   ngOnInit() {}
 
-  removeItem(product: Product) {
-    this._productService.removeFromCart(product);
-  }
 
   goToHome() {
     this._router.navigate(['/main']);
@@ -36,5 +33,9 @@ export class CartComponent {
 
   goToShip() {
     this._router.navigate(['main/shipping']);
+  }
+
+  clearCart() {
+    this._productService.removeFromCart();
   }
 }

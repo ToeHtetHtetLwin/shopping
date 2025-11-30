@@ -1,12 +1,18 @@
-<div class="flex justify-content-center">
+<!-- Page Header -->
+<div class="flex justify-content-center mt-8 px-3">
   <h1>About Us</h1>
 </div>
 
-<div class="flex m-2 p-2 border-1">
-  <div class="flex-initial flex align-items-center justify-content-center">
-    <img src="assets/product.jpg" alt="Image" width="500px" />
+<!-- Main Content -->
+<div class="flex flex-wrap m-2 p-2 border-1 justify-content-center">
+
+  <!-- Image Section -->
+  <div class="flex-initial flex justify-content-center w-full md:w-auto mb-4 md:mb-0">
+    <img src="assets/product.jpg" alt="Image" class="max-w-full h-auto rounded-lg" style="max-width:500px;" />
   </div>
-  <div class="content ml-5 align-items-center">
+
+  <!-- Text Section -->
+  <div class="flex flex-column content ml-0 md:ml-5 w-full md:w-auto">
     <h2>Our Story</h2>
     <p>
       Welcome to the store, your go-to destination for stylish and affordable
@@ -15,15 +21,18 @@
       that everyone deserves to express themselves through style without
       breaking the bank. That’s why we’re committed to bringing you the latest
       trends, high-quality materials, and excellent customer service. Founded in
-      [Year], our journey started with a simple idea: to make shopping easy,
+      2000, our journey started with a simple idea: to make shopping easy,
       enjoyable, and accessible to everyone. What began as a small passion
       project has now grown into a trusted online store loved by customers
-      across [your country or region]. We’re constantly updating our collection
+      across Burmese. We’re constantly updating our collection
       with fresh designs and new arrivals, so you’ll always find something that
       suits your personality.
     </p>
   </div>
+
 </div>
-<div class="flex justify-content-center m-2">
+
+<!-- Go Back Button -->
+<div class="flex justify-content-center m-4">
   <p-button label="Go Back" severity="success" (click)="goToHeader()" />
 </div>

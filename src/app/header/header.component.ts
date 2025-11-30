@@ -40,9 +40,6 @@ export class HeaderComponent {
     private router: Router,
     private _productService: ProductService
   ) {
-    effect(()=>{
-  console.log('count>>>>>>>>>>>>>>>>>',this.cartCount())
-    })
   }
 
   public checked: boolean = false;

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, effect, Injectable, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { Product } from './product-model';
 
 @Injectable({
@@ -52,12 +52,13 @@ export class ProductService {
     this.cartItems.set([...items]);
   }
 
-  removeFromCart(product: Product) {
-    const items = [...this.cartItems()];
-    const index = items.findIndex((item) => item.product.id == product.id);
-    if (index !== -1) {
-      items.splice(index, 1);
-      this.cartItems.set(items);
-    }
+  removeFromCart() {
+    this.cartItems.set([]);
+  //   const items = [...this.cartItems()];
+  //   const index = items.findIndex((item) => item.product.id == product.id);
+  //   if (index !== -1) {
+  //     items.splice(index, 1); 
+  //     this.cartItems.set(items);
+  //   }
   }
 }
