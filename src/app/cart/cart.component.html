@@ -1,54 +1,22 @@
-<div class="cart-page" style="padding:60px">
+<div class="cart-page p-4">
   <h2>Your Cart</h2>
+
   <div *ngIf="cartItems().length == 0">
     <p>Your cart is empty.</p>
   </div>
-  <div *ngFor="let item of cartItems()">
-    <div
-      style="
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 0;
-        border: 1px solid #8d8686;
-      "
-    >
-      <img
-        [src]="item.product.image"
-        [alt]="item.product.title"
-        style="width: 50px; height: 50px"
-      />
-      <span>{{ item.product.title }} </span>
-      <span>Qty: {{ item.qty }}</span>
 
-      <span>Subtotal: ${{ item.subtotal }}</span>
-      <!-- <p-button
-        icon="pi pi-trash"
-        [rounded]="true"
-        (click)="removeItem(item)"
-        severity="danger"
-      /> -->
+  <div *ngFor="let item of cartItems()" class="product-item border-1 border-300 border-round p-3 mb-3 flex align-items-center gap-3 w-full">
+    <img
+      [src]="item.product.image"
+      [alt]="item.product.title"
+      class="border-round"
+      style="width: 60px; height: 60px"
+    />
+
+    <div class="flex flex-column gap-1 w-full">
+      <span class="font-bold">{{ item.product.title }}</span>
+      <span class="text-sm">Qty: {{ item.qty }}</span>
+      <span class="text-sm">Subtotal: ${{ item.subtotal }}</span>
     </div>
   </div>
-  <!-- <div *ngIf="cartItems().length > 0" style="margin-top: 20px">
-    <p>Total : {{ subTotal()}}</p>
-  </div>
-</div> -->
-
-  <div class="flex justify-content-between m-2">
-  <p-button
-    label="Clear Cart"
-    severity="danger"
-    [outlined]="true"
-    (click)="clearCart()"
-  ></p-button>
-
-  <p-button
-    label="Checkout"
-    severity="success"
-    [outlined]="true"
-    (click)="goToShip()"
-  ></p-button>
-</div>
-
 </div>

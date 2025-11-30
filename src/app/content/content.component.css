@@ -32,7 +32,7 @@
 /* PHONE view */
 @media screen and (max-width: 576px) {
   ::ng-deep .p-confirm-dialog {
-    width: 300px !important; /* smaller dialog */
+    width: 350px !important; /* smaller dialog */
     max-width: 90vw !important;
   }
 
